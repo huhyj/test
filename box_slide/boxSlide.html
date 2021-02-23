@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>슬라이드 박스</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script>
+            $(document).ready(function() {
+                var cnt = document.getElementById("info");
+                cnt.addEventListener('touchend', function(e){
+                    // 컨텐츠까지 위치
+                    var hgt = $(".info").offset().top;
+                    // 
+                    if(e.changedTouches[0].pageY > hgt){
+                        console.log("현재 높이 : " + e.changedTouches[0].pageY + " 컨텐츠까지 높이 : " + hgt);
+                        $(".info").animate({bottom: '-260px'});
+                    }
+                    else{
+                        console.log("현재 높이 : " + e.changedTouches[0].pageY + " 컨텐츠까지 높이 : " + hgt);
+                        $(".info").animate({bottom: '0px'});
+                    }
+                });
+            });
+		</script>
+		<style>
+            html{
+                background: url("./image/background.png") no-repeat 0 0 fixed;
+                background-size: cover;
+                height: 100%;
+                overflow: hidden;
+                margin: 0;
+                padding: 0;
+            }
+
+            ul, ul li, ol, ol li {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            body{
+                height: 100%; 
+                margin: 0 auto; 
+                overflow: hidden;
+            }
+            /* .content{
+                width: 100%;
+                height: 100%;
+                position: relative;
+            }
+			.box{
+                width: 100%;
+                height: 300px;
+                text-align: center;
+                background-color: darkgray;
+                position: absolute;
+                bottom: -150px;
+                left: 0%;
+            } */
+
+            .content{
+                position: relative;
+                width: 100%;
+                height: inherit;
+                float: left;
+                clear: both;
+            }
+
+            .mapForm01 p{
+                line-height: 25px;
+                text-indent: 8px;
+                font-size: 14px;
+                font-weight: 600;
+                color: #1F1F1F;
+                margin-bottom: 8px;
+            }
+
+            .mapForm01 p::before{
+                content: "";
+                display: block;
+                background-image: url(./image/dot2.png);
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position-y: center;
+                width: 18px;
+                height: 30px;
+                float: left;
+            }
+
+            .info{
+                position: absolute;
+                bottom: -260px;
+                left: 0%;
+                background-color: #ffffff;
+                border-radius: 15px 15px 0 0;
+                box-shadow: 0 0 3px 1px rgb(0 0 0 / 10%);
+                padding: 0 6%;
+            }
+
+            .info .underLine{
+                height: 20px;
+                padding-top: 10px
+            }
+
+            .info span{
+                width: 38px;
+                height: 5px;
+                background-color: #D6D9DE;
+                display: block;
+                margin: 0 auto;
+                border-radius: 20px;
+            }
+
+            .mapForm{
+                padding-bottom: 20px;
+            }
+
+            .mapForm ul{
+                overflow: hidden;
+            }
+
+            .mapForm li{
+                width: 50%;
+                float: left;
+            }
+
+            .mapForm label{
+                width: 45%;
+                color: #2D2D2D;
+                font-size: 12px;
+                line-height: 24px;
+                letter-spacing: -1px;
+                font-weight: 600;
+                float: left;
+            }
+
+            .mapForm input{
+                width: 55%;
+                color: #7D7D7D;
+                font-size: 12px;
+                line-height: 24px;
+                letter-spacing: -1px;
+                border: none;
+                padding: 0;
+            }
+
+            .mapForm input:hover,
+            .mapForm input:active,
+            .mapForm input:focus{
+                outline: transparent;
+                cursor: default;
+            }
+
+            .mapForm button{
+                width: 100%;
+                padding: 3%;
+                font-family: 'NotoSans';
+                font-size: 17px;
+                color: #ffffff;
+                text-indent: 10px;
+                background-color: #2B80F4;
+                border: none;
+                border-radius: 8px;
+                margin-top: 15px;
+                position: relative;
+            }
+
+            .mapForm button img{
+                width: 14px;
+                position: absolute;
+                top: calc(50% - 8px);
+                left: calc(50% - 50px);
+            }
+
+            .mapForm02 p{
+                font-size: 13px;
+                font-weight: 600;
+                color: #1B1B1B;
+                line-height: 24px;
+            }
+
+            .mapForm02 span{
+                width: 60px;
+                height: 20px;
+                font-size: 11px;
+                line-height: 20px;
+                color: #ffffff;
+                background-color: #2A8CE8;
+                border-radius: 0px;
+                font-weight: 100;
+                text-align: center;
+                float: left;
+                margin: 2px 5px 0px 0px;
+            }
+
+            .mapForm02 label{
+                font-family: 'NotoSansBold';
+                font-weight: 100;
+            }
+		</style>
+	</head>
+
+	<body>
+        <div class="content">
+            <div class="info" id="info">
+                <div class="underLine">
+                    <span></span>
+                </div>
+                <div class="container cont03">
+                    <div class="mapForm mapForm01">
+                        <p>서울특별시 종로구 도렴동 60대</p>
+                        <form id="mapForm" action="/" method="post">
+                            <ul>
+                                <li>
+                                    <label for="info_1">용도지역</label>
+                                    <input type="text" name="info_1" id="info_1" title="용도지역" value="일반상업지역">
+                                </li>
+                                <li>
+                                    <label for="info_2">지형형상</label>
+                                    <input type="text" name="info_2" id="info_2" title="지형형상" value="사다리형">
+                                </li>
+                                <li>
+                                    <label for="info_3">지형높이</label>
+                                    <input type="text" name="info_3" id="info_3" title="지형높이" value="평지">
+                                </li>
+                                <li>
+                                    <label for="info_4">도로측면</label>
+                                    <input type="text" name="info_4" id="info_4" title="도로측면" value="중로각지">
+                                </li>
+                                <li>
+                                    <label for="info_5">면적</label>
+                                    <input type="text" name="info_5" id="info_5" title="면적" value="3,291.9㎡">
+                                </li>
+                                <li>
+                                    <label for="info_6">공시지가</label>
+                                    <input type="text" name="info_6" id="info_6" title="공시지가" value="25,100,100">
+                                </li>
+                            </ul>
+                            
+                        </form>
+                        <button type="button"><img src="./image/estimate.png" alt="평가하기 버튼"/>평가하기</button>
+                    </div>
+                    <div class="mapForm mapForm02">
+                        <p>거래사례 조회 결과</p>
+                        <p><span>상업/업무</span> 서울특별시 종로구 내자동 219대</p>
+                        <form id="mapForm" action="/" method="post">
+                            <ul>
+                                <li>
+                                    <label for="info_1">용도지역</label>
+                                    <input type="text" name="info_1" id="info_1" title="용도지역" value="일반상업지역">
+                                </li>
+                                <li>
+                                    <label for="info_2">지형형상</label>
+                                    <input type="text" name="info_2" id="info_2" title="지형형상" value="사다리형">
+                                </li>
+                                <li>
+                                    <label for="info_3">지형높이</label>
+                                    <input type="text" name="info_3" id="info_3" title="지형높이" value="평지">
+                                </li>
+                                <li>
+                                    <label for="info_4">도로측면</label>
+                                    <input type="text" name="info_4" id="info_4" title="도로측면" value="중로각지">
+                                </li>
+                                <li>
+                                    <label for="info_5">공시지가</label>
+                                    <input type="text" name="info_5" id="info_5" title="공시지가" value="20,100,100">
+                                </li>
+                                <li>
+                                    <label for="info_6">토지면적</label>
+                                    <input type="text" name="info_6" id="info_6" title="토지면적" value="1,263.1㎡">
+                                </li>
+                                <li>
+                                    <label for="info_7">(전용)연면적</label>
+                                    <input type="text" name="info_7" id="info_7" title="(전용)연면적" value="13,007.82㎡">
+                                </li>
+                                <li>
+                                    <label for="info_8">토지 거래일자</label>
+                                    <input type="text" name="info_8" id="info_8" title="토지 거래일자" value="없음">
+                                </li>
+                                <li>
+                                    <label for="info_9">토지 실거래가</label>
+                                    <input type="text" name="info_9" id="info_9" title="토지 실거래가" value="0(만원)">
+                                </li>
+                                <li>
+                                    <label for="info_10">건물 거래일자</label>
+                                    <input type="text" name="info_10" id="info_10" title="건물 거래일자" value="2019-04-29">
+                                </li>
+                                <li>
+                                    <label for="info_11">건물 실거래가</label>
+                                    <input type="text" name="info_11" id="info_11" title="건물 실거래가" value="7,720,000(만원)">
+                                </li>
+                            </ul>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>  
+    </body>
+</html>
